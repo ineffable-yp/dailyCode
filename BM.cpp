@@ -6,6 +6,7 @@ using namespace std;
 const int ASCIISIZE = 256;
 // BM算法原理
 // https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
+//https://segmentfault.com/a/1190000021632197
 
 void preBmBc(string T, int m, int *bmBc)
 {
