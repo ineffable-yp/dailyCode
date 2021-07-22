@@ -7,4 +7,4 @@ c++11的特性例子
 >>BM: boyer Mooer字符串匹配算法<br>
 >>sunday: 改进的BM算法<br>
 >>Async/Async2: std::future异步结果使用（线程同步）<br>
->>threadSync: 线程间同步的常用方式mutex,条件变量,自旋锁<br>
+>>threadSync: 线程间同步的常用方式mutex, 条件变量,自旋锁<br>
