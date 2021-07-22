@@ -1,165 +1,117 @@
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
-#include <string>
 
-using namespace std;
-
-const int ASCIISIZE = 256;
 // BM算法原理
 // https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
-//https://segmentfault.com/a/1190000021632197
-
-void preBmBc(string T, int m, int *bmBc)
+//https://icode9.com/content-1-1009160.html
+using namespace std;
+const int size = 256;
+//将模式串字符使用hash表示
+void generateBC(char b[], int m, int bc[])
 {
-    int i = 0;
-    //初始化
-    for (; i < ASCIISIZE; i++)
+    //b是模式串， m是模式串的长度， bc是散列表
+    //bc的下标是字符集的ASCII码，数组值是每个字符在模式串中出现的位置。
+    for (int i = 0; i < size; i++)
     {
-        bmBc[i] = m;
+        bc[i] = -1;
     }
-    for (i = 0; i < m - 1; i++)
+    for (int i = 0; i < m; i++)
     {
-        //T[i]-->int ascii值
-        //当字符重复出现时，以最右端字符到尾部的距离为最终距离
-        bmBc[T[i]] = m - i - 1;
+        int ascii = (int)b[i];
+        bc[ascii] = i;
     }
-}
-void suffixes(string T, int m, int *suff)
-{
-    int i, q;
-    suff[m - 1] = m;
-    for (i = m - 2; i >= 0; --i)
-    {
-        q = i;
-        while (q >= 0 && T[i] == T[m - 1 - i + q])
-        {
-            --q;
-        }
-        suff[i] = i - q;
-    }
-}
-void preBmGs(string T, int m, int bmGs[])
-{
-    int i, j, suff[m];
-    suffixes(T, m, suff);
-    for (i = 0; i < m; ++i)
-        bmGs[i] = m;
-    j = 0;
-    for (i = m - 1; i >= 0; --i)
-        if (suff[i] == i + 1)
-            for (; j < m - 1 - i; ++j)
-                if (bmGs[j] == m)
-                    bmGs[j] = m - 1 - i;
-    for (i = 0; i <= m - 2; ++i)
-        bmGs[m - 1 - suff[i]] = m - 1 - i;
-}
-int BM(string Pattern, int n, string T, int m)
-{
-    //静态数组直接在栈上分配，不可返回（生存期在函数调用完结束）
-    // new动态数组
-    int bmBc[ASCIISIZE];
-    int bmGs[m];
-    //预处理
-    preBmGs(T, m, bmGs);
-    preBmBc(T, m, bmBc);
-
-    /* Searching */
-    int i, j = 0;
-    while (j <= n - m)
-    {
-        for (i = m - 1; i >= 0 && T[i] == Pattern[i + j]; --i)
-            ;
-        if (i < 0)
-        {
-            // cout << j << endl;
-            j += bmGs[0];
-        }
-        else
-            j += max(bmGs[i], bmBc[Pattern[i + j]] - m + 1 + i);
-    }
-    return j;
-}
-int main()
-{
-    string T = "HERE IS A SIMPLE EXAMPLE";
-    string P = "EXAMPLE";
-
-    cout << "begin: " << BM(P, P.length(), T, T.length()) << endl;
-    cout << T[BM(P, P.length(), T, T.length())] << endl;
-    return 0;
 }
 /*
-template <typename E, class T, class A, class S>
-inline typename basic_fbstring<E, T, A, S>::size_type
-basic_fbstring<E, T, A, S>::find(
-    const value_type *needle,
-    const size_type pos,
-    const size_type nsize) const
-{
-    auto const size = this->size();
-    // nsize + pos can overflow (eg pos == npos), guard against that by checking
-    // that nsize + pos does not wrap around.
-    if (nsize + pos > size || nsize + pos < pos)
-    {
-        return npos;
-    }
+求suffix数组和prefix数组
+suffix数组的下标K表示后缀字串的长度，数组值对应存储的是，在模式串中跟好后缀{u}相匹配的子串{u*}
+的起始下标值。
+prefix数组是布尔型。来记录模式串的后缀字串是否能匹配模式串的前缀子串。
 
-    if (nsize == 0)
-    {
-        return pos;
-    }
-    // Don't use std::search, use a Boyer-Moore-like trick by comparing
-    // the last characters first
-    auto const haystack = data();
-    auto const nsize_1 = nsize - 1;
-    auto const lastNeedle = needle[nsize_1];
-
-    // Boyer-Moore skip value for the last char in the needle. Zero is
-    // not a valid value; skip will be computed the first time it's
-    // needed.
-    size_type skip = 0;
-
-    const E *i = haystack + pos;
-    auto iEnd = haystack + size - nsize_1;
-
-    while (i < iEnd)
-    {
-        // Boyer-Moore: match the last element in the needle
-        while (i[nsize_1] != lastNeedle)
-        {
-            if (++i == iEnd)
-            {
-                // not found
-                return npos;
-            }
-        }
-        // Here we know that the last char matches
-        // Continue in pedestrian mode
-        for (size_t j = 0;;)
-        {
-            assert(j < nsize);
-            if (i[j] != needle[j])
-            {
-                // Not found, we can skip
-                // Compute the skip value lazily
-                if (skip == 0)
-                {
-                    skip = 1;
-                    while (skip <= nsize_1 && needle[nsize_1 - skip] != lastNeedle)
-                    {
-                        ++skip;
-                    }
-                }
-                i += skip;
-                break;
-            }
-            // Check if done searching
-            if (++j == nsize)
-            {
-                // Yay
-                return i - haystack;
-            }
-        }
-    }
-    return npos;
-}
 */
+void generateGS(char b[], int m, int suffix[], bool prefix[])
+{
+    for (int i = 0; i < m; i++)
+    {
+        suffix[i] = -1;
+        prefix[i] = false;
+    }
+    for (int i = 0; i < m - 1; ++i)
+    {
+        int j = i;
+        int k = 0; //公共后缀字串长度
+        while (j >= 0 && b[j] == b[m - 1 - k])
+        {
+            //与b[0, m-1]求公共后缀字串
+            --j;
+            ++k;
+            suffix[k] = j + 1; //j+1表示公共后缀字串在b[0,i]中的起始下标
+        }
+        if (j == -1)
+            prefix[k] = true; //如果公共后缀字串也是模式串的前缀字串
+    }
+}
+
+//j表示坏字符对应的模式串中的字符下标，m是模式串的长度
+//计算在好后缀规则下模式串向后移动的个数
+int moveByGS(int j, int m, int suffix[], bool prefix[])
+{
+    int k = m - 1 - j; //好后缀的长度
+    if (suffix[k] != -1)
+        return j - suffix[k] + 1;
+    for (int r = j + 2; r <= m - 1; ++r)
+    {
+        if (prefix[m - r] == true)
+        {
+            return r;
+        }
+    }
+    return m;
+}
+
+//BM算法
+int BM(char a[], int n, char b[], int m)
+{
+    int suffix[m];
+    bool prefix[m];
+
+    int bc[size]; //bc记录模式串中每个字符最后出现的位置
+
+    generateBC(b, m, bc);             //构建字符串hash表
+    generateGS(b, m, suffix, prefix); //计算好后缀和好前缀数组
+
+    int i = 0; //表示主串与模式串对齐的第一个字符
+    while (i <= n - m)
+    {
+        int j;
+        for (j = m - 1; j >= 0; j--)
+        { //模式串从后往前匹配
+            if (a[i + j] != b[j])
+                break; //坏字符对应的模式串下标是j,即i+j 位置是坏字符的位置si
+        }
+        if (j < 0)
+        {
+            return i; //匹配成功，返回主串与模式串第一个匹配的字符的位置
+        }
+        //这里x等同于将模式串往后滑动j-bc[(int)a[i+j]]位
+        //bc[(int)a[i+j]]表示主串中坏字符在模式串中出现的位置xi
+        int x = i + (j - bc[(int)a[i + j]]);
+
+        int y = 0;
+        if (j < m - 1)
+        { //如果有好后缀的话,计算在此情况下向后移动的位数y
+            y = moveByGS(j, m, suffix, prefix);
+        }
+        i = i + max(x, y); //i更新位可以后移较多的位置
+    }
+    return -1;
+}
+
+int main()
+{
+    char a[] = "aaaabaaba";
+    char b[] = "aaaa";
+    int i = BM(a, 9, b, 2);
+    printf("%d\n", i);
+    return 0;
+}
