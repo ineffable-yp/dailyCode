@@ -180,15 +180,51 @@ void sortLink(Node *head)
         tail = cur;
     }
 }
-Node *getHead(Node *head)
+
+Node *merge(Node *head, Node *head2)
 {
-    return nullptr;
-}
-void mergesort(Node *head)
-{
-    if (head->next)
+    Node *curHead = nullptr;
+    Node *p = new Node(-1);
+    curHead = p;
+    while (head && head2)
     {
+        if (head->val > head2->val)
+        {
+            p->next = head2;
+            head2 = head2->next;
+            p = p->next;
+        }
+        else
+        {
+            p->next = head;
+            head = head->next;
+            p = p->next;
+        }
     }
+    if (head != nullptr)
+        p->next = head;
+    else
+        p->next = head2;
+    return curHead->next;
+}
+Node *mergesort(Node *head)
+{
+    if (head == nullptr || head->next == nullptr)
+    {
+        return head;
+    }
+    Node *fast, *slow, *prev;
+    fast = head;
+    slow = head;
+    prev = head;
+    while (fast != nullptr && fast->next != nullptr)
+    {
+        prev = slow;
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    prev->next = nullptr;
+    return merge(mergesort(head), mergesort(slow));
 }
 int main()
 {
@@ -196,6 +232,9 @@ int main()
     Node *head = create();
     print(head);
 
+    cout << "mergeSort:\n";
+    head = mergesort(head);
+    print(head);
     cout << "insert sort:\n";
     head = insertSort(head);
     print(head);
