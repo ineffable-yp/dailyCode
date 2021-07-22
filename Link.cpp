@@ -78,6 +78,67 @@ Node *insertNode(Node *head, int data, int needData)
     }
     return head;
 }
+//O(1)时间复杂度删除节点
+Node *deleteNodeinO1(Node *head, Node *tobedel)
+{
+    if (head == tobedel)
+        return head->next;
+    if (tobedel->next == nullptr)
+    {
+        Node *tmp = head;
+        while (tmp->next != tobedel)
+            tmp = tmp->next;
+        //尾部直接删除
+        tmp->next = nullptr;
+    }
+    else
+    {
+        tobedel->val = tobedel->next->val;
+        tobedel->next = tobedel->next->next;
+    }
+    return head;
+}
+//删除第k个节点，双指针法
+Node *deleteKNode(Node *head, int k)
+{
+    if (head == nullptr || head->next == nullptr)
+        return head;
+    int i = 0;
+    Node *first, *second;
+    first = head;
+    while (i < k && first)
+    {
+        second = first;
+        first = first->next;
+        ++i;
+    }
+    second->next = first->next;
+    delete first;
+    return head;
+}
+//删除重复节点(有序)
+Node *deleteDupNode(Node *head)
+{
+    if (head == nullptr || head->next == nullptr)
+        return head;
+    Node *cur, *prev;
+    cur = head;
+    while (cur != nullptr && cur->next != nullptr)
+    {
+        prev = cur->next;
+        if (prev->val == cur->val)
+        {
+            cur->next = prev->next;
+            delete prev;
+        }
+        else
+        {
+            cur = cur->next;
+        }
+    }
+    return head;
+}
+//按值删除指定节点
 Node *deleteNode(Node *head, int data)
 {
     if (head == nullptr)
@@ -102,11 +163,13 @@ Node *deleteNode(Node *head, int data)
     }
     return head;
 }
+//链表反转
 Node *reverseLink(Node *head)
 {
     Node *prev, *pCur;
 
     pCur = head;
+    //尾部节点
     prev = nullptr;
     while (pCur)
     {
@@ -118,6 +181,7 @@ Node *reverseLink(Node *head)
     }
     return prev;
 }
+//链表是否有环
 bool isCircleLink(Node *head)
 {
     Node *fast, *slow;
@@ -131,6 +195,7 @@ bool isCircleLink(Node *head)
     }
     return false;
 }
+//插入排序
 Node *insertSort(Node *head)
 {
     if (head == nullptr || head->next == nullptr)
@@ -138,6 +203,7 @@ Node *insertSort(Node *head)
     Node *head2, *cur, *p, *q;
 
     head2 = head->next;
+    //孤立头部，已插入
     head->next = nullptr;
 
     while (head2)
@@ -159,6 +225,7 @@ Node *insertSort(Node *head)
     }
     return head;
 }
+//冒泡排序
 void sortLink(Node *head)
 {
     if (head == nullptr || head->next == nullptr)
@@ -180,7 +247,7 @@ void sortLink(Node *head)
         tail = cur;
     }
 }
-
+//合并两条子链
 Node *merge(Node *head, Node *head2)
 {
     Node *curHead = nullptr;
@@ -207,6 +274,7 @@ Node *merge(Node *head, Node *head2)
         p->next = head2;
     return curHead->next;
 }
+//归并排序
 Node *mergesort(Node *head)
 {
     if (head == nullptr || head->next == nullptr)
@@ -223,6 +291,7 @@ Node *mergesort(Node *head)
         fast = fast->next->next;
         slow = slow->next;
     }
+    //寻找链中间节点，分开
     prev->next = nullptr;
     return merge(mergesort(head), mergesort(slow));
 }
@@ -257,6 +326,14 @@ int main()
 
     cout << "sorted link:\n";
     sortLink(head);
+    print(head);
+
+    cout << "delete k node:\n";
+    head = deleteKNode(head, 3);
+    print(head);
+
+    cout << "delete dup node:\n";
+    head = deleteDupNode(head);
     print(head);
     return 0;
 }
