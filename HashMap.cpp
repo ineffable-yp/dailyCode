@@ -139,7 +139,7 @@ HashMap::~HashMap()
 int main()
 {
     HashMap hashmap(15);
-    for (int i = 0; i < 40; i++)
+    for (int i = 0; i < 100; i++)
     {
         hashmap.insert(i);
     }
