@@ -1,5 +1,7 @@
 #include <stack>
 #include <iostream>
+#include <string.h>
+#include <queue>
 using namespace std;
 
 //结点类型
@@ -491,5 +493,8 @@ private:
 
 int main()
 {
+    BinaryTree<char> btree('#');
+    btree.CreateBinTree();
+    btree.PrintBinTree();
     return 0;
 }
