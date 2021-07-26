@@ -134,45 +134,52 @@ protected:
     //使用广义表创建二叉树函数,这里以“字符”创建二叉树,以'#'字符代表结束
     void CreateBinTree(BinTreeNode<T> *&BT)
     {
+
         stack<BinTreeNode<T> *> s;
-        BT = NULL;
-        BinTreeNode<T> *p, *t; //p用来记住当前创建的节点，t用来记住栈顶的元素
-        int k;                 //k是处理左、右子树的标记
+        BT = nullptr;
+        BinTreeNode<T> *p; //p用来记住当前创建的节点，t用来记住栈顶的元素
+        int k;             //k是处理左、右子树的标记
         T ch;
         cin >> ch;
-
-        while (ch != RefValue)
+        while (ch != '#')
         {
-            switch (ch)
+            int s = 0;
+            if (ch == ',')
             {
-            case '(': //对(做处理
-                s.push(p);
                 k = 1;
-                break;
-
-            case ')': //对)做处理
-                s.pop();
-                break;
-
-            case ',': //对,做处理
-                k = 2;
-                break;
-
-            default:
-                p = new BinTreeNode<T>(ch); //构造一个结点
-                if (BT == NULL)             //如果头节点是空
-                {
+                s = -1;
+            }
+            if (s != -1)
+            {
+                p = new BinTreeNode<T>(ch);
+                if (BT == nullptr)
                     BT = p;
-                }
-                else if (k == 1) //链入*t的左孩子
+                else
                 {
-                    t = s.top();
-                    t->leftChild = p;
-                }
-                else //链入*t的右孩子
-                {
-                    t = s.top();
-                    t->rightChild = p;
+                    BinTreeNode<T> *t = BT;
+                    while (t != nullptr)
+                    {
+                        if (k == 0)
+                        {
+                            if (t->leftChild == nullptr)
+                            {
+                                t->leftChild = p;
+                                break;
+                            }
+                            else
+                                t = t->leftChild;
+                        }
+                        if (k == 1)
+                        {
+                            if (t->rightChild == nullptr)
+                            {
+                                t->rightChild = p;
+                                break;
+                            }
+                            else
+                                t = t->rightChild;
+                        }
+                    }
                 }
             }
             cin >> ch;
@@ -468,20 +475,17 @@ protected:
     {
         if (BT != NULL) //树为空时结束递归
         {
-            cout << BT->data;
+            cout << BT->data << " ";
             if (BT->leftChild != NULL || BT->rightChild != NULL)
             {
-                cout << '(';
                 if (BT->leftChild != NULL)
                 {
                     PrintBinTree(BT->leftChild);
                 }
-                cout << ',';
                 if (BT->rightChild != NULL)
                 {
                     PrintBinTree(BT->rightChild);
                 }
-                cout << ')';
             }
         }
     }
@@ -493,7 +497,7 @@ private:
 
 int main()
 {
-    BinaryTree<char> btree('#');
+    BinaryTree<char> btree;
     btree.CreateBinTree();
     btree.PrintBinTree();
     return 0;
