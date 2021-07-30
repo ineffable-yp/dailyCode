@@ -1,4 +1,8 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <type_traits>
+
 using namespace std;
 
 void pass_by_value(int *p)
@@ -11,6 +15,10 @@ void pass_by_ref(int *&p)
 }
 int main()
 {
+    auto x = 1, y = 3;
+    decltype(x + y) z;
+    if (is_same<decltype(z), int>::value)
+        cout << "int ...\n";
     int *p1, *p2;
     p1 = nullptr;
     p2 = nullptr;
