@@ -9,7 +9,7 @@ c++11的特性例子
 >sunday: 改进的BM算法<br>
 >Async/Async2: std::future异步结果使用（线程同步）<br>
 >threadSync: 线程间同步的常用方式mutex, 条件变量,自旋锁<br>
->HashMap : 基于链表的开链法构建基础哈希表
->std-move: 右值引用移动，减少无效拷贝
->Tree    : 二叉树 结构
->c++Contructor: 默认构造函数
+>HashMap : 基于链表的开链法构建基础哈希表<br>
+>std-move: 右值引用移动，减少无效拷贝<br>
+>Tree    : 二叉树 结构<br>
+>c++Contructor: 默认构造函数<br>
