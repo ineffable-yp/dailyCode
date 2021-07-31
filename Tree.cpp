@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <queue>
+#include <type_traits>
 using namespace std;
 
 //结点类型
@@ -497,6 +498,10 @@ private:
 
 int main()
 {
+    if (std::is_same<decltype(NULL), std::nullptr_t>::value)
+        std::cout << "NULL == nullptr" << std::endl;
+    else
+        cout << "not same\n";
     BinaryTree<char> btree;
     btree.CreateBinTree();
     btree.PrintBinTree();
