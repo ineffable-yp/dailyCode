@@ -56,6 +56,7 @@ int main()
     value = 100;
     cout << copy_value() << endl;
 
+    //函数对象包装器
     // std::function 包装了一个返回值为 int, 参数为 int 的函数
     std::function<int(int)> func = foo;
 
