@@ -5,20 +5,20 @@ public:
     int *pointer;
     A() : pointer(new int(1))
     {
-        std::cout << "构造" << pointer << std::endl;
+        std::cout << "construct" << pointer << std::endl;
     }
     A(A &a) : pointer(new int(*a.pointer))
     {
-        std::cout << "拷贝" << pointer << std::endl;
+        std::cout << "copy" << pointer << std::endl;
     } // 无意义的对象拷贝
     A(A &&a) : pointer(a.pointer)
     {
         a.pointer = nullptr;
-        std::cout << "移动" << pointer << std::endl;
+        std::cout << "move" << pointer << std::endl;
     }
     ~A()
     {
-        std::cout << "析构" << pointer << std::endl;
+        std::cout << "deconstruct" << pointer << std::endl;
         delete pointer;
     }
 };
