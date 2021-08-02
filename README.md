@@ -13,3 +13,4 @@ c++11的特性例子
 >std-move: 右值引用移动，减少无效拷贝<br>
 >Tree    : 二叉树 结构<br>
 >c++Contructor: 默认构造函数<br>
+>container:   c++11部分容器特性<br>
