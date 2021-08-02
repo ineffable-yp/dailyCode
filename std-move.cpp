@@ -54,6 +54,6 @@ int main()
     // 这步操作后, str 中的值会变为空
     v.push_back(std::move(hestr));
     // 将输出 "str: "
-    std::cout << "str: " << hestr << std::endl;
+    std::cout << "str66: " << hestr << std::endl;
     return 0;
 }
