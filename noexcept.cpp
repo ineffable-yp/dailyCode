@@ -1,4 +1,9 @@
 #include <iostream>
+//有利于编译器优化
+//1.移动构造函数
+//2.移动分配函数
+//3.析构函数
+//4.叶子函数
 void may_throw()
 {
     throw true;
