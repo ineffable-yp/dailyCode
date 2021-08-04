@@ -16,3 +16,4 @@ c++11的特性例子
 >container:   c++11部分容器特性<br>
 >regex    :   std::regex使用<br>
 >null     :   nullptr NULL的区分
+>atomic   :   基于原子操作的互斥锁（无锁）
