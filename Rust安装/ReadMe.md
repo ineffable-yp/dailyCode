@@ -1,5 +1,5 @@
 Rust 国内镜像配置(windows)
-===
+====
 >跳转至.Cargo目录创建config文件<br>
 >       例如：C:\Users\yp\ .cargo\config <br>
 >修改RustUP国内镜像<br>
