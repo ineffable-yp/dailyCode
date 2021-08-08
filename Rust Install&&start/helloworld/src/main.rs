@@ -1,7 +1,4 @@
-//类似于lambda表达式
-fn add(a: i32, b: i32) -> i32 {
-    return a + b;
-}
+include!("baseFunc.rs");
 fn main() {
     //强类型转换 可变变量
     let mut a: u64 = 12;
@@ -15,6 +12,7 @@ fn main() {
     print!("x的值 {}\n", x);
 
     let s = "123";
+    func_call(s);
     let s = s.len();
     println!("s的长度 {}", s);
 
@@ -27,4 +25,14 @@ fn main() {
     let a0 = [1, 2, 3, 4];
     let c0: [i32; 5] = [2, 3, 4, 5, 6]; //长度为5的i32数组
     println!("a0[2]:{0}, c0[3]:{1}", a0[2], c0[3]);
+
+    //rust条件分支
+    if a0[3] < 5 {
+        println!("a0[3]小于5");
+    } else {
+        //不允许单独语句代替代码块
+        println!("大于5");
+    }
+    let res = if a0[2] > 10 { 1 } else { -1 };
+    println!("函数体表达式res: {0}", res);
 }
