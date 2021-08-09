@@ -1,4 +1,7 @@
 include!("baseFunc.rs");
+include!("advancedFunc.rs");
+include!("stringFunc.rs");
+
 fn main() {
     //强类型转换 可变变量
     let mut a: u64 = 12;
@@ -37,4 +40,8 @@ fn main() {
     let res = if a0[2] > 10 { 1 } else { -1 };
     println!("函数体表达式res: {0}", res);
     circle_call();
+    allrights();
+
+    let str = String::from("test slice");
+    slice(str);
 }
