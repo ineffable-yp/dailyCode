@@ -32,7 +32,6 @@ fn circle_call() {
         if i == 10 {
             break i;
         }
-        println!("{}不小于10", i);
         i += 1;
     };
     println!("{} 等于 10", location);
