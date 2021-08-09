@@ -30,9 +30,11 @@ fn main() {
     if a0[3] < 5 {
         println!("a0[3]小于5");
     } else {
+        //else分支不可少
         //不允许单独语句代替代码块
         println!("大于5");
     }
     let res = if a0[2] > 10 { 1 } else { -1 };
     println!("函数体表达式res: {0}", res);
+    circle_call();
 }
