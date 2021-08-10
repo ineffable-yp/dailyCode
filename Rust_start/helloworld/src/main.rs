@@ -1,6 +1,8 @@
 include!("baseFunc.rs");
 include!("advancedFunc.rs");
 include!("stringFunc.rs");
+
+//mod enumFunc; snake case小写
 include!("enumFunc.rs");
 fn main() {
     //强类型转换 可变变量

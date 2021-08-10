@@ -1,6 +1,7 @@
 //x..y表示区间[x,y)
 //rust中两种常见的字符串类型str和String
 //前者便是字符串切片
+//String是类似于长度不确定的数据，需要在堆中存储
 #[derive(Debug)]
 struct Book {
     domain: String,

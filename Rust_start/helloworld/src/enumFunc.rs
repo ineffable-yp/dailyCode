@@ -6,7 +6,18 @@ enum Book2 {
 //Rust 不支持switch分支，改用match语法
 fn get_book() {
     let book = Book2::Papery { index: 2222 };
+    let book2 = Book2::Elec {
+        url: String::from("hello"),
+    };
     match book {
+        Book2::Papery { index } => {
+            println!("papery {}", index);
+        }
+        Book2::Elec { url } => {
+            println!("elec {}", url);
+        }
+    }
+    match book2 {
         Book2::Papery { index } => {
             println!("papery {}", index);
         }
@@ -22,4 +33,6 @@ fn get_book() {
         0 => println!("zero"),
         _ => {}
     }
+
+    panic!("error occured");
 }
