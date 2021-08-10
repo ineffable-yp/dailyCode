@@ -20,4 +20,5 @@ c++11的特性例子
 >alignMem :   内存对齐<br>
 >noexcept :   异常处理<br>
 >## memLeak  : Dr. memory代码性能分析（内存泄漏，悬挂指针等）
+>## "开发至死 永不停更"
 
