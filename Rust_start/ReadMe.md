@@ -12,7 +12,9 @@
 
 > 系统变量PATH 中添加rust环境变量<br> 
 > &emsp;&emsp; eg: C:\Users\yp\.cargo\bin<br>
-
+> enumFunc : 枚举 match 及 异常错误处理<br>
+> advanceFunc : 切片 管理权 生命周期<br>
+> orgnizationFunc: 组织 包箱等<br>
 cargo
 ====
 >rust包管理工具：创建，构建工程，运行等功能<br>
