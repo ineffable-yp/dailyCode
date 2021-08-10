@@ -1,0 +1,1 @@
+D:\dailyCode\Rust_start\helloworld\target\debug\helloworld.exe: D:\dailyCode\Rust_start\helloworld\src\advancedFunc.rs D:\dailyCode\Rust_start\helloworld\src\baseFunc.rs D:\dailyCode\Rust_start\helloworld\src\main.rs D:\dailyCode\Rust_start\helloworld\src\stringFunc.rs
