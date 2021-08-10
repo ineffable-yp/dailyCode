@@ -1,4 +1,4 @@
-#[derive(Debug)]
+use std::fs::File;
 enum Book2 {
     Papery { index: i32 },
     Elec { url: String },
@@ -33,6 +33,17 @@ fn get_book() {
         0 => println!("zero"),
         _ => {}
     }
-
-    panic!("error occured");
+    //抛出panic
+    //panic!("error occured");
+}
+fn openfile(filename: String) {
+    let f = File::open(filename);
+    match f {
+        Ok(_file) => {
+            println!("File opened successfully.");
+        }
+        Err(_err) => {
+            println!("Failed to open the file.");
+        }
+    }
 }
