@@ -1,9 +1,9 @@
 include!("baseFunc.rs");
 include!("advancedFunc.rs");
 include!("stringFunc.rs");
-
 //mod enumFunc; snake case小写
 include!("enumFunc.rs");
+
 fn main() {
     //强类型转换 可变变量
     let mut a: u64 = 12;
@@ -49,4 +49,5 @@ fn main() {
 
     get_struct();
     get_book();
+    openfile(String::from("D:\\dailyCode\\c++11_init.cpp"));
 }
