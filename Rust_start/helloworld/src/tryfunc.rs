@@ -72,7 +72,7 @@ fn longer<'a>(s1: &'a str, s2: &'a str) -> &'a str {
 //泛型 综合 特性 生命周期
 fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
 where
-    T: Display,
+    T: Display, //约束 实现Display特性的T类型
 {
     println!("Announcement! {}", ann);
     if x.len() > y.len() {
