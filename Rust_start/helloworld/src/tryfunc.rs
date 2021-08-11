@@ -1,6 +1,8 @@
+use std::fmt::Display;
 use std::fs::File;
 use std::io;
 use std::io::Read;
+
 #[derive(Debug)]
 //编译器通过derive为一些trait提供基础的实现
 //trait理解为面向对象中的接口，但接口只能定义方法不能实现方法
@@ -67,12 +69,27 @@ fn longer<'a>(s1: &'a str, s2: &'a str) -> &'a str {
         s1
     }
 }
+//泛型 综合 特性 生命周期
+fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {}", ann);
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
 pub fn compare() {
     let r;
+    let r1;
     {
         let s1 = "rust";
         let s2 = "ecmascript";
         r = longer(s1, s2);
+        r1 = longest_with_an_announcement(s1, s2, 9);
         println!("{} is longer", r);
+        println!("{} ", r1);
     }
 }
