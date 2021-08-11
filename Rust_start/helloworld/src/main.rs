@@ -52,4 +52,5 @@ fn main() {
     get_book();
     openfile(String::from("D:\\dailyCode\\c++11_init.cpp"));
     tryfunc::test_read();
+    tryfunc::compare();
 }
