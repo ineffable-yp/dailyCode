@@ -5,6 +5,8 @@ include!("enumFunc.rs");
 //模块方式的调用
 mod io;
 mod tryfunc;
+mod unittest;
+
 fn main() {
     //强类型转换 可变变量
     let mut a: u64 = 12;

@@ -1,9 +1,10 @@
+//禁用未使用的死代码
 #[allow(dead_code)]
 pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-// 这个加法函数写得很差，本例中我们会使它失败。
+//错误。
 #[allow(dead_code)]
 fn bad_add(a: i32, b: i32) -> i32 {
     a - b
