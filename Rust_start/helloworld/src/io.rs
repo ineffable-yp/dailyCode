@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::fs;
 use std::fs::OpenOptions;
 use std::io::prelude::*;
@@ -52,4 +53,20 @@ pub fn vec_process() {
             None => "none".to_string(),
         }
     )
+}
+pub fn hash_func() {
+    let mut hp = HashMap::new();
+    hp.insert("color", "red");
+    //不存在某个键值时才执行的插入操作
+    hp.entry("base").or_insert("green");
+    println!("{}", hp.get("color").unwrap());
+
+    //快速修改某个已存在的键值
+    if let Some(x) = hp.get_mut(&"color") {
+        *x = "yellow"
+    }
+    for p in hp.iter() {
+        //迭代元素表示键值对的元组
+        println!("{:?}", p);
+    }
 }

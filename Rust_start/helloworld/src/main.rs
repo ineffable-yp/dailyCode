@@ -62,4 +62,5 @@ fn main() {
         }
     }
     io::vec_process();
+    io::hash_func();
 }
