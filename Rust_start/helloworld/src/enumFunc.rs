@@ -36,6 +36,7 @@ fn get_book() {
     //抛出panic
     //panic!("error occured");
 }
+//错误处理难点
 fn openfile(filename: String) {
     let f = File::open(filename);
     match f {
