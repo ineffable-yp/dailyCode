@@ -1,12 +1,7 @@
 use std::thread;
 use std::time::Duration;
 use std::sync::mpsc;
-// fn spawn_function() {
-//     for i in 0..5 {
-//         println!("spawned thread print {}", i);
-//         thread::sleep(Duration::from_millis(1));
-//     }
-// }
+//mpsc: 多生产者 单消费者 FIFO队列
 //消息
 fn message_pass(){
     let (tx,rx) = mpsc::channel();
