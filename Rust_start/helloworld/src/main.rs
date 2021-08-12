@@ -2,8 +2,8 @@ include!("baseFunc.rs");
 include!("advancedFunc.rs");
 include!("stringFunc.rs");
 include!("enumFunc.rs");
-//include!("tryfunc.rs");
 //模块方式的调用
+mod io;
 mod tryfunc;
 fn main() {
     //强类型转换 可变变量
@@ -53,4 +53,13 @@ fn main() {
     openfile(String::from("D:\\dailyCode\\c++11_init.cpp"));
     tryfunc::test_read();
     tryfunc::compare();
+    io::showargs();
+    let f = io::read_stream();
+    match f {
+        Ok(f) => f,
+        Err(e) => {
+            println!("eror:{}", e);
+        }
+    }
+    io::vec_process();
 }
