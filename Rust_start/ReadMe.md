@@ -15,6 +15,7 @@
 > enumFunc : 枚举 match 及 异常错误处理<br>
 > advanceFunc : 切片 管理权 生命周期<br>
 > orgnizationFunc: 组织 包箱等<br>
+> unittest : 简单的单元测试 框架模块等<br>
 cargo
 ====
 >rust包管理工具：创建，构建工程，运行等功能<br>
