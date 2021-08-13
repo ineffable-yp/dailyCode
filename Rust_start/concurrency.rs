@@ -10,6 +10,7 @@ fn message_pass(){
         //获取线程的发送者 tx 并发送数据
         tx.send(val).unwrap();
     });
+    //unwrap 在确保程序不会异常或出错情况下，忽略-避免使用
     let receive = rx.recv().unwrap();
     println!("得到值:{}",receive);
 }
