@@ -1,12 +1,4 @@
 use std::error::Error;
-
-// unsafe Rust不会进行安全检查
-// 1.解引用原生指针
-// 2.调用unsafe的函数或方法
-// 3.访问或修改可变的静态变量
-// 4.实现unsafe的trait
-// 5.读写联合体中的字段
-
 //自定义类型 Error,实现std::fmt::Debug的trait
 #[derive(Debug)]
 struct CustomError {
