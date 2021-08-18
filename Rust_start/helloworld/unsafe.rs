@@ -17,4 +17,9 @@ fn main() {
         //unsafe代码块中的程序由开发者保证程序的安全性
         println!("{}", my_union.i);
     }
+    let val:Option<u32> = Some(4);
+    match val {
+        Some(num) => println!("val is: {}", num),
+        None => println!("val is None")
+    }
 }
