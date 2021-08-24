@@ -2,6 +2,7 @@
 #include <csignal>
 #include <unistd.h>
 #include <pthread.h>
+#include <string>
 
 using namespace std;
 const int NUM_THREADS = 5;
@@ -19,7 +20,26 @@ void *PrintHello(void *threadarg)
     cout << " Message : " << my_data->message << endl;
     pthread_exit(NULL);
 }
+void strCpy(string &source, const string &str)
+{
+    size_t index = source.find_last_of(" ") + 1;
+    if (index == source.size())
+        return;
+    string replaceStr = source.substr(index, source.size() - index);
+    if (replaceStr.size() > str.size())
+        source.resize(str.size() + source.size() - replaceStr.size());
 
+    for (size_t i = index, j = 0; j < str.size();)
+    {
+        if (i == source.size())
+        {
+            source.push_back(str[j++]);
+            i++;
+        }
+        else
+            source[i++] = str[j++];
+    }
+}
 void signalHandler(int signum)
 {
     cout << "Interrupt signal(" << signum << ") received\n";

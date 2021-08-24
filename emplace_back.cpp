@@ -23,8 +23,6 @@ private:
     std::string name;
 };
 
-void strCpy(string &source, const string &str);
-
 int main()
 {
     std::vector<Foo> v;

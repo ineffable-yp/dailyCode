@@ -30,7 +30,7 @@ void test2()
     char *x = (char *)malloc(8);
     std::cout << sizeof(x) / sizeof(char) << std::endl;
     std::cout << sizeof(char) << std::endl;
-    char c = *(x + 8); // buffer overlow 溢出
+    char c = *(x + 8); // buffer overlow 溢出 0-7
     free(x);
     c = *x; // read free memory
 }
