@@ -5,6 +5,11 @@
 #include <vector>
 
 using namespace std;
+template <typename T>
+inline T const &Max(T const &a, T const &b) //函数体内值不被修改，返回值不能为左值
+{
+    return a < b ? b : a;
+}
 
 int number = 0;
 const char *get_name()
@@ -14,16 +19,31 @@ const char *get_name()
     snprintf(name, 10, "jam%i", number);
     return name;
 }
+
 int main()
 {
+    //vector底层扩容
     vector<int> s;
     cout << s.size() << "--" << s.capacity() << endl;
     s.push_back(2);
     cout << s.size() << "--" << s.capacity() << endl;
+    //动态内存1
+    int *ipt = new int;
+    *ipt = 13;
+    delete ipt;
+    //动态内存2*3列
+    int **arr = new int *[2];
+    for (int i = 0; i < 2; i++)
+        arr[i] = new int[3];
 
+    for (int i = 0; i < 2; i++)
+        delete[] arr[i];
+    delete[] arr;
+    cout << Max(4, 5) << endl;
     char *name = (char *)get_name(); //不安全 破坏设计函数的初衷
     name[0] = 'J';                   //在rust中unsafe关键字 部分安全（暂时）
     printf("name: %s\n", name);
     free(name);
+
     return 0;
 }
