@@ -29,6 +29,8 @@ int main()
     cout << s.size() << "--" << s.capacity() << endl;
     //动态内存1
     int *ipt = new int;
+    cout << "sizeof(int*):" << sizeof(ipt) << endl;
+    cout << "0取反: " << (unsigned)~0 << endl;
     *ipt = 13;
     delete ipt;
     //动态内存2*3列
