@@ -26,6 +26,7 @@ int main()
     vector<int> s;
     cout << s.size() << "--" << s.capacity() << endl;
     s.push_back(2);
+    s.resize(0);
     cout << s.size() << "--" << s.capacity() << endl;
     //动态内存1
     int *ipt = new int;

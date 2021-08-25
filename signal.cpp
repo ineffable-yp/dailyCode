@@ -31,7 +31,7 @@ void strCpy(string &source, const string &str)
 
     for (size_t i = index, j = 0; j < str.size();)
     {
-        if (i == source.size())
+        if (source.size() == i)
         {
             source.push_back(str[j++]);
             i++;
