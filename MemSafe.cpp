@@ -22,6 +22,13 @@ const char *get_name()
 
 int main()
 {
+    int sum = 0;
+    for (unsigned char i = 0; i < 1000; i++)
+    {
+        cout << (int)i << endl;
+        sum += i;
+    }
+    cout << sum << endl;
     //vector底层扩容
     vector<int> s;
     cout << s.size() << "--" << s.capacity() << endl;
