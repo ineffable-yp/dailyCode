@@ -11,7 +11,7 @@ public:
     {
         std::cout << "construct " << pointer << std::endl;
     }
-    A(A &a) : pointer(new int(*a.pointer))
+    A(const A &a) : pointer(new int(*a.pointer))
     {
         std::cout << "copy " << pointer << std::endl;
     } //无意义的对象拷贝
