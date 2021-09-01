@@ -61,4 +61,6 @@ int main()
     B b(a); //编译器会隐式对未初始化的默认 调用A的默认构造 - B的拷贝构造
     //析构a
     return 0;
+
+    //内联可以virtual 但当virtual多态机制时不能内联
 }
