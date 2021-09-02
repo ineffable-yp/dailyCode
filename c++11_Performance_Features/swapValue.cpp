@@ -19,5 +19,13 @@ int main()
     int *p1 = &a, *p2 = &b;
     swap1(p1, p2);
     cout << *p1 << "  " << *p2 << endl;
+
+    int &r = a;
+    int *p = &a;
+    cout << sizeof(r) << endl; //变量大小
+    cout << sizeof(p) << endl; //地址大小
+    cout << &r << endl;
+    cout << &a << endl;
+    cout << &p << endl;
     return 0;
 }

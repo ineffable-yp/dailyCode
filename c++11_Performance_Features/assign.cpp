@@ -8,6 +8,7 @@ class B
         cout << "B 构造\n";
     }
 };
+
 class A
 {
 public:
