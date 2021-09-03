@@ -5,6 +5,7 @@ using namespace std;
 class B
 {
 public:
+    int x;
     virtual void test1()
     {
         cout << "hello test1" << endl;
@@ -32,12 +33,13 @@ int main()
     typedef void (*Func)(); //函数指针
 
     B *b = new B;
-    cout << "object b address: " << b << endl;
+    cout << "object b address  : " << b << endl;
+    cout << "variable x address: " << &b->x << endl;
     int vtable = *(reinterpret_cast<int *>(b)); //虚函数表首地址==vptr解引用
     for (int i = 0; i < 2; i++)
     {
         int address = *(reinterpret_cast<int *>(vtable + 8 * i)); //虚函数入口地址
-        cout << "virtual function " << i << ": " << address << endl;
+        cout << "virtual function " << i << ": 0x" << address << endl;
         Func f = reinterpret_cast<Func>(address);
         f();
     }
@@ -50,7 +52,7 @@ int main()
     for (int i = 0; i < 3; i++)
     {
         int address = *(reinterpret_cast<int *>(vtable2 + 8 * i)); //虚函数入口地址
-        cout << "virtual function " << i << ": " << address << endl;
+        cout << "virtual function " << i << ": 0x" << address << endl;
         Func f = reinterpret_cast<Func>(address);
         f();
     }
