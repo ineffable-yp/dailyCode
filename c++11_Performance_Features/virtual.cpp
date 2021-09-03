@@ -26,9 +26,11 @@ public:
         cout << "hello test3\n";
     }
 };
+
 int main()
 {
     typedef void (*Func)(); //函数指针
+
     B *b = new B;
     cout << "object b address: " << b << endl;
     int vtable = *(reinterpret_cast<int *>(b)); //虚函数表首地址==vptr解引用
@@ -39,6 +41,8 @@ int main()
         Func f = reinterpret_cast<Func>(address);
         f();
     }
+
+    cout << "\n";
 
     C *c = new C;
     cout << "object c address: " << c << endl;
