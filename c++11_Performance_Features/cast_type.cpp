@@ -49,6 +49,7 @@ int main()
     /*reinpreter_cast 非相关的类型之间转换,从一个指针到别的指针的值的二进制拷贝*/
     int *p = &b;
     unsigned int val = reinterpret_cast<unsigned int>(p);
+    //????
     //辅助哈希函数MSDN
     /*
     // Returns a hash code based on an address
