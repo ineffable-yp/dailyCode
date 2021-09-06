@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+
 class Base
 {
 public:
@@ -14,6 +15,7 @@ void Base::setM() const
     //m=3; const限制不允许修改成员变量的值
     //保证不会修改函数内部状态
 }
+
 int main()
 {
     int a = 2, b = 3;
