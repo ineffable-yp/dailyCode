@@ -53,5 +53,6 @@
         "map": "cpp",
         "regex": "cpp",
         "csignal": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

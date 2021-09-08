@@ -46,6 +46,7 @@ void testforward(T &&x)
     test(move(x));
     test(forward<T>(x));
 }
+
 int main()
 {
     A a(1);
