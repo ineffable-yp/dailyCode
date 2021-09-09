@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class A
@@ -34,11 +35,13 @@ void test(T &&x)
 {
     cout << "右值: " << x << endl;
 }
+
 template <typename T>
 void test(T &x)
 {
     cout << "左值: " << x << endl;
 }
+
 template <typename T>
 void testforward(T &&x)
 {
