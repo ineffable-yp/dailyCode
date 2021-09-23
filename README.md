@@ -19,6 +19,13 @@ c++11的特性例子
 >atomic   :   基于原子操作的互斥锁（无锁）<br>
 >alignMem :   内存对齐<br>
 >noexcept :   异常处理<br>
+
+>memory_order_relaxed	无fencing作用，cpu和编译器可以重排指令<br>
+>memory_order_consume	后面依赖此原子变量的访存指令勿重排至此条指令之前<br>
+>memory_order_acquire	后面访存指令勿重排至此条指令之前<br>
+>memory_order_release	前面的访存指令勿排到此条指令之后。当此条指令的结果被同步到其他核的cache中时，保证前面的指令也已经被同步。<br>
+>memory_order_acq_rel	acquare + release<br>
+>memory_order_seq_cst	acq_rel + 所有使用seq_cst的指令有严格的全序关系<br>
+
 >## memLeak  : Dr. memory代码性能分析（内存泄漏，悬挂指针等）
 >## "开发至死 永不停更"
-
