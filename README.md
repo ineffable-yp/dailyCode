@@ -28,4 +28,3 @@ c++11的特性例子
 >memory_order_seq_cst	acq_rel + 所有使用seq_cst的指令有严格的全序关系<br>
 >EularPath: 构造图迭代器,解耦图搜索，连通性--> 欧拉路径输出
 >## memLeak  : Dr. memory代码性能分析（内存泄漏，悬挂指针等）
->## "开发至死 永不停更"
